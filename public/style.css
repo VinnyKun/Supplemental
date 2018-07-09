@@ -1,0 +1,25 @@
+.calendar-today {
+  background-color: #E87571;
+  color: #ffffff;
+  font-family: 'Lato', sans serif;
+  margin: 40px auto;
+  padding: 10px 20px 50px;
+  text-align: center;
+  width: 320px;
+}
+
+.month-label { 
+  border-bottom: 2px solid #ffffff;
+  font-size: 55px;
+}
+
+.day-label {
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 120px;
+  padding-top: 30px;
+}
+
+.weekday-label {
+  font-size: 20px;
+}

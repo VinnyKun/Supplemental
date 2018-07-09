@@ -84,7 +84,6 @@ module.exports = function(db){
   const loginUser = (request,response) => {
 
     let email = request.body.email
-    console.log(email);
     let password_hash = sha256 (request.body.password)
 
     users.loginUser(email, (error, result) => {
@@ -117,6 +116,19 @@ module.exports = function(db){
     response.redirect('/');
   };
 
+  /*
+    *************************************************************
+    *************************************************************
+                    Medicine
+    *************************************************************
+    *************************************************************
+
+*/   
+
+  const newMedsForm = (request, response) => {
+    response.render('addMedicineForm')
+  }
+
   return {
     
     get: get,
@@ -125,7 +137,9 @@ module.exports = function(db){
     postUserForm:postUserForm,
 
     loginUser:loginUser,
-    logoutUser:logoutUser
+    logoutUser:logoutUser,
+
+    newMedsForm:newMedsForm
 
   };
 }

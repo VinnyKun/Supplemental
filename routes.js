@@ -23,4 +23,8 @@ module.exports = (app, db) => {
 	//user login route
 	app.post('/login', users.loginUser);
 	app.get('/logout', users.logoutUser);
+
+	//add medicine routes
+	app.get('/meds/new', users.newMedsForm);
+	// app.post('/meds/new', users.postMedsForm)
 };
