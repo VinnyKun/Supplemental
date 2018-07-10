@@ -54,10 +54,44 @@ module.exports = function(db){
         db.pool.query(queryText, values, callback);   
     };
 
+  /*
+    *************************************************************
+    *************************************************************
+                    Medicine
+    *************************************************************
+    *************************************************************
+
+*/   
+
+
+  let postMedsForm = function (name, dosage,instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id, callback) {
+  
+  let queryText = 'INSERT INTO medication(name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);';
+  let values = [name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id ];
+  db.pool.query(queryText, values, callback);  
+
+};
+
+	let displayMedsToday = function (day, users_id, callback ) {
+		let queryText ='SELECT name, dosage, instruction, type, Morning, Noon, Mid_Afternoon, Evening, Bedtime FROM medication Where '+day+'=true AND users_id = $1;';
+		let values = [users_id]
+		db.pool.query(queryText, values, callback); 
+    };
+
+    let displayMedsTodayOne = function (day, users_id, time, callback  ) {
+		let queryText ='SELECT name, dosage, instruction, type FROM medication Where '+day+'=true AND users_id = $1 AND ' + time + '=true;';
+		let values = [users_id]
+		db.pool.query(queryText, values, callback); 
+    };
+
 
         
     return {
         createUser : createUser,
         loginUser : loginUser,
+        postMedsForm: postMedsForm,
+
+        displayMedsToday: displayMedsToday,
+        displayMedsTodayOne: displayMedsTodayOne
     };
 };

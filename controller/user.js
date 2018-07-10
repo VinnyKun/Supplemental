@@ -37,6 +37,11 @@ module.exports = function(db){
     response.send("WEIRD");
   };
 
+   const main = (request, response) => {
+    // make a query for a user and return that user data
+    response.render("calendarInterfaceThingy");
+  };
+
 /*
     *************************************************************
     *************************************************************
@@ -129,9 +134,59 @@ module.exports = function(db){
     response.render('addMedicineForm')
   }
 
+  const postMedsForm = (request, response) => {
+  
+    let meds = request.body;
+    let user_id = request.cookies['user_id'];
+
+    users.postMedsForm(meds.name, meds.dosage, meds.instruction, meds.type, meds.Monday, meds.Tuesday, meds.Wednesday, meds.Thursday, meds.Friday, meds.Saturday, meds.Sunday, meds.Morning, meds.Noon, meds.Mid_Afternoon, meds.Evening, meds.Bedtime, user_id, (error, result) => {
+      if (error) {
+        console.log('query error postMeds:', error.stack);
+        }else {
+        console.log('query result:', result);
+        response.render('personalMedslist');
+        }
+    }) 
+  }  
+
+  const displayMedsToday = (request, response) => {
+      let date = new Date();
+      let weekday = new Array(7); 
+      weekday[0] = "sunday";
+      weekday[1] = "monday";
+      weekday[2] = "tuesday";
+      weekday[3] = "wednesday";
+      weekday[4] = "thursday";
+      weekday[5] = "friday";
+      weekday[6] = "saturday";
+
+    let today = weekday[date.getDay()];    
+    let yesterday = weekday[date.getDay() - 1];
+    let tomorrow = weekday[date.getDay() + 1];
+    
+    let user_id = request.cookies['user_id'];
+
+    users.displayMedsToday(today, user_id, (error, result) =>{
+      if (error) {
+      console.log('query error getdaymorning:', error.stack);
+      }else {
+      console.log('query result:', result);
+      
+      var context = {
+        medication: result.rows
+      }
+      console.log(context);
+      // redirect to Edit.jsx page
+      response.render('calendarInterfaceThingy', context);
+      }  
+    })
+  }
+
+
   return {
     
     get: get,
+    main:main,
 
     newUserForm: newUserForm,
     postUserForm:postUserForm,
@@ -139,7 +194,10 @@ module.exports = function(db){
     loginUser:loginUser,
     logoutUser:logoutUser,
 
-    newMedsForm:newMedsForm
+    newMedsForm:newMedsForm,
+    postMedsForm:postMedsForm,
+
+    displayMedsToday:displayMedsToday
 
   };
 }

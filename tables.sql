@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS medication (
   name varchar(255),
   dosage varchar(255),
   instruction varchar(255),
+  type varchar(255),
+
 
   Monday boolean,
   Tuesday boolean,
@@ -27,6 +29,5 @@ CREATE TABLE IF NOT EXISTS medication (
   Evening boolean,
   Bedtime boolean,
 
-  users_id integer,
-  is_taking boolean
+  users_id integer
 );

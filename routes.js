@@ -15,6 +15,7 @@ module.exports = (app, db) => {
 
   	//test route
  	app.get('/users', users.get );
+ 	app.get('/main', users.main );
 
  	//user registration route
 	app.get('/users/new', users.newUserForm);
@@ -26,5 +27,7 @@ module.exports = (app, db) => {
 
 	//add medicine routes
 	app.get('/meds/new', users.newMedsForm);
-	// app.post('/meds/new', users.postMedsForm)
+	app.post('/meds/new', users.postMedsForm);
+
+	app.get('/today', users.displayMedsToday );
 };
