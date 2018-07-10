@@ -22,10 +22,8 @@ class Main extends React.Component {
 	        </head>
 	        <body>
 	        	<p>Supplemental</p>
-	        
 
-
-				<a href="/main"> Today's List </a>
+				<a href="/today"> Today's List </a>
 				<br/>
 				<a href="/logout"> Logout </a>
 				<br/>

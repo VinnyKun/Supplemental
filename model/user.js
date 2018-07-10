@@ -72,26 +72,20 @@ module.exports = function(db){
 
 };
 
-	let displayMedsToday = function (day, users_id, callback ) {
-		let queryText ='SELECT name, dosage, instruction, type, Morning, Noon, Mid_Afternoon, Evening, Bedtime FROM medication Where '+day+'=true AND users_id = $1;';
-		let values = [users_id]
-		db.pool.query(queryText, values, callback); 
-    };
 
-    let displayMedsTodayOne = function (day, users_id, time, callback  ) {
-		let queryText ='SELECT name, dosage, instruction, type FROM medication Where '+day+'=true AND users_id = $1 AND ' + time + '=true;';
+    let displayMedsTodayOne = function (day, users_id, callback  ) {
+		let queryText ='SELECT * FROM medication Where '+day+'=true AND users_id = $1';
 		let values = [users_id]
 		db.pool.query(queryText, values, callback); 
     };
 
 
-        
+        	
     return {
         createUser : createUser,
         loginUser : loginUser,
         postMedsForm: postMedsForm,
 
-        displayMedsToday: displayMedsToday,
         displayMedsTodayOne: displayMedsTodayOne
     };
 };

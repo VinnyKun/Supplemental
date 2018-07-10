@@ -37,10 +37,7 @@ module.exports = function(db){
     response.send("WEIRD");
   };
 
-   const main = (request, response) => {
-    // make a query for a user and return that user data
-    response.render("calendarInterfaceThingy");
-  };
+
 
 /*
     *************************************************************
@@ -105,7 +102,7 @@ module.exports = function(db){
 
               response.cookie('logged_in', 'true');
               response.cookie('user_id', result.rows[0].id);
-              response.render('calendarInterfaceThingy');
+              response.redirect('/today');
           }else{
               response.status(401).send('wrong password!');
 
@@ -149,6 +146,7 @@ module.exports = function(db){
     }) 
   }  
 
+  
   const displayMedsToday = (request, response) => {
       let date = new Date();
       let weekday = new Array(7); 
@@ -166,27 +164,62 @@ module.exports = function(db){
     
     let user_id = request.cookies['user_id'];
 
-    users.displayMedsToday(today, user_id, (error, result) =>{
+    var callback = (error, result) =>{
       if (error) {
-      console.log('query error getdaymorning:', error.stack);
-      }else {
-      console.log('query result:', result);
-      
-      var context = {
-        medication: result.rows
-      }
-      console.log(context);
-      // redirect to Edit.jsx page
-      response.render('calendarInterfaceThingy', context);
+        console.log('query error getdaymorning:', error.stack);
+      }else if (result.rows > 0) {
+        final.push(result.rows)
+        console.log(final);
       }  
-    })
+    }
+    users.displayMedsTodayOne(today, user_id, (error, result) => {
+
+      const output = {
+        Morning:[],
+        Noon:[],
+        Mid_Afternoon:[],
+        Evening:[],
+        Bedtime:[]
+      }
+
+
+      for( var i=0; i<result.rows.length; i++ ){
+        
+        let singleRow = result.rows[i];
+
+        if( singleRow.morning == true ){
+          output.Morning.push( singleRow );
+        }
+
+        if( singleRow.noon == true ){
+          output.Noon.push( singleRow );
+        }
+
+        if( singleRow.mid_afternoon == true ){
+          output.Mid_Afternoon.push( singleRow );
+        }
+
+        if( singleRow.evening == true ){
+          output.Evening.push( singleRow );
+        }
+
+        if( singleRow.bedtime == true ){
+          output.Bedtime.push( singleRow );
+        }
+      }
+
+      console.log(output);
+
+      response.render('calendarInterfaceThingy', {output: output})
+ 
+    });
+
   }
 
-
+ 
   return {
     
     get: get,
-    main:main,
 
     newUserForm: newUserForm,
     postUserForm:postUserForm,

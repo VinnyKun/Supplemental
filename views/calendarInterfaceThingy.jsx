@@ -21,6 +21,7 @@ class Main extends React.Component {
 	        
 	        </head>
 	        <body>
+
 	        <div class="columns">
 	        	
 	        	<div class="column"></div>
@@ -39,10 +40,95 @@ class Main extends React.Component {
 				<a href="/meds/new"> Add Medication </a>
 				</div>
 
-				<div class="column is-two-fifths">
-				<p>Supplemental</p>
-				<p>Table goes here</p>
+				<div class="column three-fifths">
+					<table class="table is-bordered">
+							<tr>
+								<th>Name</th>
+								<th>dosage</th>
+	       						<th>Instruction</th>
+	       						<th>Supplement</th>
+	       						<th>Administered</th>
+							</tr>
+
+						<tbody>
+						<br/>
+
+							<tr><th>Morning</th></tr>
+							{this.props.output.Morning.map((item)=>{
+							return[
+								<tr>
+									<td>{item.name}</td>
+									<td>{item.dosage}</td>
+		       						<td>{item.instruction}</td>
+		       						<td>{item.type}</td>
+		       						<td>
+										<label class="checkbox">
+										  <input type="checkbox"/>
+										</label>
+		       						</td>
+								</tr>
+							]
+							})}
+
+							<tr><th>Noon</th></tr>
+							{this.props.output.Noon.map((item)=>{
+							return[
+	
+								<tr>
+									<td>{item.name}</td>
+									<td>{item.dosage}</td>
+		       						<td>{item.instruction}</td>
+		       						<td>{item.type}</td>
+		       						<td></td>
+								</tr>
+							]
+							})}
+
+							<tr><th>Mid_Afternoon</th></tr>
+							{this.props.output.Mid_Afternoon.map((item)=>{
+							return[
+
+								<tr>
+									<td>{item.name}</td>
+									<td>{item.dosage}</td>
+		       						<td>{item.instruction}</td>
+		       						<td>{item.type}</td>
+		       						<td></td>
+								</tr>
+							]
+							})}
+
+							<tr><th>Evening</th></tr>
+							{this.props.output.Evening.map((item)=>{
+							return[
+
+								<tr>
+									<td>{item.name}</td>
+									<td>{item.dosage}</td>
+		       						<td>{item.instruction}</td>
+		       						<td>{item.type}</td>
+		       						<td></td>
+								</tr>
+							]
+							})}
+
+							<tr><th>Bedtime</th></tr>
+							{this.props.output.Bedtime.map((item)=>{
+							return[
+
+								<tr>
+									<td>{item.name}</td>
+									<td>{item.dosage}</td>
+		       						<td>{item.instruction}</td>
+		       						<td>{item.type}</td>
+		       						<td></td>
+								</tr>
+							]
+							})}																													
+						</tbody>
+					</table>
 				</div>
+				
 				<div class="column"></div>
 
 			</div>	

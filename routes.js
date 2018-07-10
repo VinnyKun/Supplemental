@@ -15,7 +15,6 @@ module.exports = (app, db) => {
 
   	//test route
  	app.get('/users', users.get );
- 	app.get('/main', users.main );
 
  	//user registration route
 	app.get('/users/new', users.newUserForm);
