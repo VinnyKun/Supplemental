@@ -14,7 +14,7 @@ class Home extends React.Component {
           <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
           <link rel="stylesheet" type="text/css" href="/style.css"/>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
-          <link rel="shortcut icon" type="image/png" href="pilly.png"/>
+          <link rel="shortcut icon" type="image/png" href="/pilly.png"/>
           <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
           
           <title>
@@ -44,7 +44,7 @@ class Home extends React.Component {
 
               <div class="column is-two-fifths">
 
-                <img src="pillbox.png" width='320' height='300'/>
+                <img src="/pillbox.png" width='320' height='300'/>
 
               </div>
 
@@ -104,7 +104,7 @@ class Home extends React.Component {
               <div class="content has-text-centered">
                 <p>
                   <strong>Supplemental</strong> by <a href="#">VinnyKun</a>. The source code is <strong>obviously not</strong> licensed by
-                  <a href="http://opensource.org/licenses/mit-license.php"> MIT</a>.
+                  <a href="#"> MIT</a>.
                 </p>
               </div>
             </footer>

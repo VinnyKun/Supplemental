@@ -1,12 +1,12 @@
 
 .calendar-today {
-  background-color: #E87571;
+  background-color: #ff0053;
   color: #ffffff;
   font-family: 'Lato', sans serif;
   margin: 40px auto;
   padding: 10px 20px 50px;
   text-align: center;
-  width: 320px;
+  width: 450px;
 }
 
 .month-label { 
