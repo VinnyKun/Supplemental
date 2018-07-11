@@ -31,13 +31,13 @@ class Form extends React.Component {
 
 			<h1>Supplemental!</h1>
 			<br/>
-
-			<form className="medicine-form" method="POST" action="/meds/new">
+			
+			<form className="medicine-form" method="POST" action={"/meds/edit/"+ this.props.context.form.id + "?_method=PUT"}>
 				
 				<div class="field">
 					<label class="label">Name</label>
 					<p class="control has-icons-left">
-						<input class="input" type="name" name="name" placeholder="Medication or Supplement Name"/>
+						<input class="input" type="name" name="name" defaultValue={this.props.context.form.name}/>
 						<span class="icon is-small is-left">
 							<i class="fas fa-medkit"></i>
 						</span>
@@ -47,7 +47,7 @@ class Form extends React.Component {
 				<div class="field">
 					<label class="label">Dosage</label>
 					<p class="control has-icons-left">
-						<input class="input" type="name" name="dosage" placeholder="Dosage in Mgs, Ml,tablets etc"/>
+						<input class="input" type="name" name="dosage" defaultValue={this.props.context.form.dosage}/>
 						<span class="icon is-small is-left">
 							<i class="fas fa-medkit"></i>
 						</span>
@@ -57,7 +57,7 @@ class Form extends React.Component {
 				<div class="field">
 					<label class="label">Instruction</label>
 					<p class="control has-icons-left">
-						<input class="input" type="name" name="instruction" placeholder="e.g. Before/After Food"/>
+						<input class="input" type="name" name="instruction" defaultValue={this.props.context.form.instruction}/>
 						<span class="icon is-small is-left">
 							<i class="fas fa-medkit"></i>
 						</span>
@@ -67,7 +67,7 @@ class Form extends React.Component {
 				<div class="field">
 					<label class="label">Type</label>
 					<p class="control has-icons-left">
-						<input class="input" type="name" name="type" placeholder="Prescription or Supplement"/>
+						<input class="input" type="name" name="type" defaultValue={this.props.context.form.type}/>
 						<span class="icon is-small is-left">
 							<i class="fas fa-medkit"></i>
 						</span>
@@ -331,6 +331,20 @@ class Form extends React.Component {
 				</div>
 
 				</form>
+				<br/>
+
+	          <form className="medicine-delete" method="POST" action={"/meds/edit/delete/"+ this.props.context.form.id + "?_method=delete"}>
+	           
+				<div class="field">
+					<p class="control">
+						<button class="button is-danger">
+						Delete
+						</button>
+					</p>
+				</div>
+
+	          </form>				
+
           		<br/>
 				<a href="/logout"> Logout </a>
 

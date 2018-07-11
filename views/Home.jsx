@@ -14,6 +14,7 @@ class Home extends React.Component {
           <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
           <link rel="stylesheet" type="text/css" href="/style.css"/>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+          <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
           
           <title>
             Supplemental

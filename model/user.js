@@ -64,21 +64,51 @@ module.exports = function(db){
 */   
 
 
-  let postMedsForm = function (name, dosage,instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id, callback) {
-  
-  let queryText = 'INSERT INTO medication(name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);';
-  let values = [name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id ];
-  db.pool.query(queryText, values, callback);  
+	let postMedsForm = function (name, dosage,instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id, callback) {
 
-};
+		let queryText = 'INSERT INTO medication(name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);';
+		let values = [name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, users_id ];
+		db.pool.query(queryText, values, callback);  
+
+	};
 
 
     let displayMedsTodayOne = function (day, users_id, callback  ) {
+		
 		let queryText ='SELECT * FROM medication Where '+day+'=true AND users_id = $1';
 		let values = [users_id]
 		db.pool.query(queryText, values, callback); 
     };
 
+    let personalMedsList = function (users_id, callback) {
+
+    	let queryText = 'SELECT * FROM medication where users_id =$1 ';
+    	let values= [users_id]
+    	db.pool.query(queryText, values, callback);
+    }
+
+    let editMedsForm = (id, callback) =>{
+
+    	let queryText = 'SELECT * FROM medication where id =$1 ';
+    	let values= [id]
+    	db.pool.query(queryText, values, callback);    
+    
+  	}
+
+  	let putEditedMedsForm = (id, name, dosage,instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime, callback) =>{
+    	
+		let queryText = 'UPDATE medication SET name = $2, dosage = $3, instruction = $4, type = $5, Monday = $6, Tuesday = $7, Wednesday = $8, Thursday = $9, Friday = $10, Saturday = $11, Sunday = $12, Morning = $13, Noon = $14, Mid_Afternoon = $15, Evening = $16, Bedtime = $17 WHERE id =$1 ;';
+		let values = [id, name, dosage, instruction, type, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Morning, Noon, Mid_Afternoon, Evening, Bedtime];
+		db.pool.query(queryText, values, callback);  
+
+  	}
+
+  	let deleteMeds = (id, callback) =>{
+
+  		let queryText = 'DELETE from medication WHERE id =$1';
+    	let values= [id]
+    	db.pool.query(queryText, values, callback);   
+  	}
 
         	
     return {
@@ -86,6 +116,11 @@ module.exports = function(db){
         loginUser : loginUser,
         postMedsForm: postMedsForm,
 
-        displayMedsTodayOne: displayMedsTodayOne
+        displayMedsTodayOne: displayMedsTodayOne,
+        personalMedsList:personalMedsList,
+
+        editMedsForm: editMedsForm,
+        putEditedMedsForm: putEditedMedsForm,
+        deleteMeds:deleteMeds
     };
 };

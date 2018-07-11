@@ -14,7 +14,8 @@ class createForm extends React.Component {
           <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
           <link rel="stylesheet" type="text/css" href="/style.css"/>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
-          
+          <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
           <title>
             Supplemental
           </title>
@@ -22,13 +23,45 @@ class createForm extends React.Component {
         </head>
         
         <body>
-          <h2>Register!</h2>
-          <form action="/users/new" method="POST">
-            <input name="email" type="text" placeholder="email" />
-            <input name="password" type="password" placeholder="password"/>
-            <input type="submit" value="Create"/><br/>
-          </form>
-          
+          <div class='columns'>
+
+          <div class="column"></div>
+          <div class="column is-half">
+
+            <h2>Register!</h2>
+            <form action="/users/new" method="POST">
+
+               <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" name="email" type="text" placeholder="Email"/>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" name="password" type="password" placeholder="Password"/>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control">
+                  <button class="button is-success">
+                    Register
+                  </button>
+                </p>
+              </div>
+
+            </form>
+          </div>
+          <div class="column"></div>
+          </div>
         </body>
 
       </html>       
